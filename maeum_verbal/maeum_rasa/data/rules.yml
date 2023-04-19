@@ -1,0 +1,68 @@
+version: "3.1"
+
+rules:
+
+- rule: Do smile
+  steps:
+  - intent: action_smile
+  - action: utter_a_smile
+
+- rule: Do sadness
+  steps:
+  - intent: action_sadness
+  - action: utter_a_sadness
+  
+- rule: Do disgust
+  steps:
+  - intent: action_disgust
+  - action: utter_a_disgust
+  
+- rule: Do anger
+  steps:
+  - intent: action_anger
+  - action: utter_a_anger
+  
+- rule: Identify human
+  steps:
+  - intent: ask_person
+  - action: action_ask_person
+
+- rule: Identify people
+  steps:
+  - intent: ask_people
+  - action: action_ask_person
+
+- rule: Identify object
+  steps:
+  - intent: ask_object
+  - action: utter_ask_object
+
+- rule: Identify emotion
+  steps:
+  - intent: ask_emotion
+  - action: utter_identify_emotion
+
+- rule: Ask for study programs
+  steps:
+  - intent: study_programs_fim_uhk
+  - action: utter_study_programs_fim_uhk
+
+- rule: Prompt name for visual cortex
+  steps:
+  - intent: prompting_name
+  - action: utter_ask_name
+
+- rule: Turn off blinking
+  steps:
+  - intent: stop_blinking
+  - action: action_stop_blinking
+
+- rule: Turn on blinking
+  steps:
+  - intent: start_blinking
+  - action: action_start_blinking
+
+- rule: How are you
+  steps:
+  - intent: how_are_you
+  - action: action_how_are_you

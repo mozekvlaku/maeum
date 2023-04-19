@@ -1,0 +1,482 @@
+[
+    {
+        "classification": "person",
+        "name": "Osoba",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "bicycle",
+        "name": "Jízdní kolo",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "car",
+        "name": "Auto",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "motorbike",
+        "name": "Motorka",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "aeroplane",
+        "name": "Letoun",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "bus",
+        "name": "Autobus",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "train",
+        "name": "Vlak",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "truck",
+        "name": "Nákladní auto",
+        "relation": "disgusts",
+        "cadence": 1
+    },
+    {
+        "classification": "boat",
+        "name": "Loď",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "traffic light",
+        "name": "Semafor",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "fire hydrant",
+        "name": "Požární hydrant",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "stop sign",
+        "name": "Stopka",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "parking meter",
+        "name": "Parkovací automat",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "bench",
+        "name": "Lavice",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "bird",
+        "name": "Pták",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "cat",
+        "name": "Kočka",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "dog",
+        "name": "Pes",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "horse",
+        "name": "Kůň",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "sheep",
+        "name": "Ovce",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "cow",
+        "name": "Kráva",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "elephant",
+        "name": "Slon",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "bear",
+        "name": "Medvěd",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "zebra",
+        "name": "Zebra",
+        "relation": "makescurious",
+        "cadence": 1
+    },
+    {
+        "classification": "giraffe",
+        "name": "Žirafa",
+        "relation": "makescurious",
+        "cadence": 1
+    },
+    {
+        "classification": "backpack",
+        "name": "Batoh",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "umbrella",
+        "name": "Deštník",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "handbag",
+        "name": "Kabelka",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "tie",
+        "name": "Kravata",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "suitcase",
+        "name": "Kufr",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "frisbee",
+        "name": "Létající talíř",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "skis",
+        "name": "Lyže",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "snowboard",
+        "name": "Snowboard",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "sports ball",
+        "name": "Sportovní míč",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "kite",
+        "name": "Papírový drak",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "baseball bat",
+        "name": "Baseballová pálka",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "baseball glove",
+        "name": "Baseballová rukavice",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "skateboard",
+        "name": "Skateboard",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "surfboard",
+        "name": "Surf",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "tennis racket",
+        "name": "Tenisová raketa",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "bottle",
+        "name": "Láhev",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "wine glass",
+        "name": "Sklenice na víno",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "cup",
+        "name": "Pohár",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "fork",
+        "name": "Vidlička",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "knife",
+        "name": "Nůž",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "spoon",
+        "name": "Lžíce",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "bowl",
+        "name": "Miska",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "banana",
+        "name": "Banán",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "apple",
+        "name": "Jablko",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "sandwich",
+        "name": "Sendvič",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "orange",
+        "name": "Pomeranč",
+        "relation": "saddens",
+        "cadence": 1
+    },
+    {
+        "classification": "broccoli",
+        "name": "Brokolice",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "carrot",
+        "name": "Mrkev",
+        "relation": "disgusts",
+        "cadence": 1
+    },
+    {
+        "classification": "hot dog",
+        "name": "Párek v rohlíku",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "pizza",
+        "name": "Pizza",
+        "relation": "disgusts",
+        "cadence": 1
+    },
+    {
+        "classification": "donut",
+        "name": "Kobliha",
+        "relation": "disgusts",
+        "cadence": 1
+    },
+    {
+        "classification": "cake",
+        "name": "Dort",
+        "relation": "disgusts",
+        "cadence": 1
+    },
+    {
+        "classification": "chair",
+        "name": "Židle",
+        "relation": "dislikes",
+        "cadence": 1
+    },
+    {
+        "classification": "sofa",
+        "name": "Gauč",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "pottedplant",
+        "name": "Rostlina",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "bed",
+        "name": "Postel",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "diningtable",
+        "name": "Jídelní stůl",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "toilet",
+        "name": "Toaleta",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "tvmonitor",
+        "name": "TV nebo monitor",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "laptop",
+        "name": "Notebook",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "mouse",
+        "name": "Myš",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "remote",
+        "name": "Ovladač",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "keyboard",
+        "name": "Klávesnice",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "cell phone",
+        "name": "Mobilní telefon",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "microwave",
+        "name": "Mikrovlnná trouba",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "oven",
+        "name": "Trouba",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "toaster",
+        "name": "Toustovač",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "sink",
+        "name": "Dřez",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "refrigerator",
+        "name": "Lednička",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "book",
+        "name": "Kniha",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "clock",
+        "name": "Hodiny",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "vase",
+        "name": "Váza",
+        "relation": "neutral",
+        "cadence": 1
+    },
+    {
+        "classification": "scissors",
+        "name": "Nůžky",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "teddy bear",
+        "name": "Medvídek",
+        "relation": "fears",
+        "cadence": 1
+    },
+    {
+        "classification": "hair drier",
+        "name": "Fén",
+        "relation": "likes",
+        "cadence": 1
+    },
+    {
+        "classification": "toothbrush",
+        "name": "Kartáček na zuby",
+        "relation": "likes",
+        "cadence": 1
+    }
+]

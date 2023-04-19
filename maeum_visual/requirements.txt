@@ -1,0 +1,9 @@
+cmake
+Flask
+dlib
+opencv-python
+fer
+moviepy
+imutils
+imageai
+face-recognition

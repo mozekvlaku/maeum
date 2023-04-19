@@ -1,0 +1,40 @@
+{
+  "name": "maeum_matter",
+  "version": "1.0.0",
+  "description": "Maeum AI Interconnection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon"
+  },
+  "author": "Maeum",
+  "license": "ISC",
+  "dependencies": {
+    "@u4/opencv-build": "^0.7.8",
+    "@u4/opencv4nodejs": "^6.5.1",
+    "axios": "^1.2.6",
+    "blessed": "^0.1.81",
+    "chatgpt": "^5.2.2",
+    "console-gui-tools": "^3.0.2",
+    "esm": "^3.2.25",
+    "express": "^4.18.2",
+    "mjpeg-consumer": "^2.0.0",
+    "mjpeg-proxy": "^0.3.0",
+    "node-nlp": "^4.26.1",
+    "opencv4nodejs": "^5.6.0",
+    "request": "^2.88.2",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+    "vue-quick-chat": "^1.2.8"
+  },
+  "opencv4nodejs": {
+    "autoBuildOpencvVersion": "4.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.11",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}

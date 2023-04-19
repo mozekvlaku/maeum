@@ -1,0 +1,46 @@
+version: "3"
+services:
+  maeum_matter:
+    image: node:latest
+    container_name: maeum_matter
+    volumes:
+      - ./maeum_matter:/app
+    working_dir: /app
+    command: npm start
+    ports:
+      - "3000:3000"
+    networks:
+      - maeum-intranet
+  maeum_synapse:
+    image: node:latest
+    container_name: maeum_synapse
+    volumes:
+      - ./maeum_synapse/vebot-controller:/app
+    working_dir: /app
+    command: npm run serve
+    ports:
+      - "8080:8080"
+    networks:
+      - maeum-intranet
+  maeum_rasa:
+    image: khalosa/rasa-aarch64:3.3.1
+    container_name: maeum_rasa
+    volumes:
+      - ./maeum_verbal/maeum_rasa:/app
+    working_dir: /app
+    command: run --enable-api
+    ports:
+      - "5005:5005"
+      - "5055:5055"
+    networks:
+      - maeum-intranet
+  maeum_visual:
+    build:
+      context: .
+      dockerfile: ./maeum_visual/Dockerfile
+    ports:
+      - "5001:5001"
+    networks:
+      - maeum-intranet
+networks:
+  maeum-intranet:

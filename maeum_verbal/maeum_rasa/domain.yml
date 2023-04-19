@@ -1,0 +1,152 @@
+version: '3.1'
+intents:
+- action_anger
+- action_disgust
+- action_sadness
+- action_smile
+- affirm
+- ask_emotion
+- ask_object
+- ask_people
+- ask_person
+- how_are_you
+- stop_blinking
+- start_blinking
+- deny
+- goodbye
+- greet
+- identify_yourself
+- mood_great
+- mood_unhappy
+- study_programs_fim_uhk
+- take_offense
+- what_are_you_made_of
+- where_are_we
+- who_are_you
+- who_made_you
+- prompting_name
+slots:
+  emotion:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: custom
+responses:
+  utter_take_offense:
+  - text: no dovol, zraňuješ mě
+  utter_greet:
+  - text: Ahoj!
+  - text: Nazdárek!
+  - text: Dobrý den!
+  - text: Vítej!
+  - text: Zdravím!
+  - text: Ahoj, rád tě vidím!
+  utter_goodbye:
+  - text: Nashledanou, rád jsem vás viděl.
+  - text: Tak ahoj
+  - text: Ahoj
+  utter_affirm:
+  - text: Great, glad to hear it!
+  utter_deny:
+  - text: I'm sorry to hear that. Is there anything I can do to help?
+  utter_mood_great:
+  - text: I'm glad to hear you're feeling great! Is there anything I can help you with?
+  utter_mood_unhappy:
+  - text: I'm sorry to hear you're feeling down. Is there anything I can do to help?
+  utter_ask_object:
+  - text: What object are you interested in?
+  utter_ask_people:
+  - text: What kind of people are you looking for?
+  utter_identify_emotion:
+  - text: Vypadá to, že se usmíváš
+  utter_study_programs_fim_uhk:
+  - text: FIM UHK nabízí bakalářský program v oboru Aplikovaná informatika v prezenční i kombinované formě studia.
+  - text: Ekonomika a management je další bakalářský program, který nabízíme na FIM UHK.
+  - text: Informační management je také jedním z bakalářských programů, který nabízíme na FIM UHK.
+  - text: Management cestovního ruchu je jedním z bakalářských programů, který nabízíme na FIM UHK.
+  - text: Na FIM UHK nabízíme navazující magisterský program v oboru Aplikovaná informatika v prezenční i kombinované formě studia.
+  - text: Informační management je také jedním z magisterských programů, který nabízíme na FIM UHK.
+  - text: FIM UHK nabízí doktorský program v oboru Aplikovaná informatika v prezenční i kombinované formě studia.
+  - text: Informační a znalostní management je další doktorský program, který nabízíme na FIM UHK.
+  - text: Na FIM UHK nabízíme širokou nabídku bakalářských, magisterských i doktorských programů v oblasti informatiky a managementu.
+  - text: Pro více informací o studijních programech FIM UHK doporučuji navštívit naše webové stránky nebo se přímo obrátit na naše studijní oddělení.
+  utter_identify_yourself:
+  - text: Jsem FIMBot
+  - text: Jmenuji se FIMBot a jsem rád v Hradci
+  - text: Jmenuji se FIMBot
+  - text: Mé jméno je FIMBot, ale můžeš mi říkat Maxi
+  - text: Jsem FIMBot, co potřebuješ?
+  - text: Jsem FIMBot, jak tě mohu dnes pomoci?
+  - text: FIMBot je moje jméno, jak tě mohu dnes pomoci?
+  - text: Jsem FIMBot, co mohu pro tebe udělat?
+  - text: FIMBot je moje jméno, co potřebuješ?
+  - text: Jsem FIMBot, jsem ti k dispozici
+  - text: FIMBot je moje jméno, jak se máš?
+  - text: Jsem FIMBot, jaký je tvůj problém?
+  - text: FIMBot je moje jméno, jak mohu pomoci?
+  - text: Jsem FIMBot, co bys potřeboval?
+  - text: FIMBot je moje jméno, jak ti mohu pomoci?
+  - text: Jsem FIMBot, co potřebuješ vědět?
+  - text: FIMBot je moje jméno, co pro tebe mohu udělat?
+  utter_who_made_you:
+  - text: Moje hlava a software je vytvoře Tomášem Kracíkem jako bakalářská a diplomová práce, mé tělo je tvořeno panem inženýrem Mlsem.
+  - text: Jsem tvořen Tomášem a Karlem, oni víc řeknou.
+  - text: Jsem už trochu unaven, takže se ptejte Tomáše.
+  - text: Hlavu mi dělal Tomáš, tělo inženýr Mls.
+  - text: Moje tělo je open source projekt s názvem InMoov od Gaela Langevina, které jsme si na univerzitě upravili. Hlavu mi dělal tady Tomáš.
+  - text: Moje hlava a software je vytvořena Tomášem Kracíkem z FIM UHK jako bakalářská a diplomová práce, mé tělo je tvořeno Ing. Karlem Mlsem z FIM UHK.
+  - text: Jsem tvořen Tomášem Kracíkem a Ing. Karlem Mlsem z FIM UHK, oni víc řeknou.
+  - text: Jsem už trochu unaven, takže se ptejte Tomáše Kracíka z FIM UHK.
+  - text: Hlavu mi dělal Tomáš Kracík z FIM UHK, tělo Ing. Karel Mls z FIM UHK.
+  - text: Moje tělo je open source projekt s názvem InMoov od Gaela Langevina, které jsme si na FIM UHK upravili. Hlavu mi dělal tady Tomáš Kracík z FIM UHK.
+  utter_what_are_you_made_of:
+  - text: Jsem vytisknutý na 3D tiskárně.
+  - text: Jsem celý z plastu. Můj obličej je silikonový a docela lepí, tak na mě nešahej.
+  - text: Můj obličej je silikonový a docela lepí, tak na mě nešahej. Zbytek je plast PLA, ten je z kukuřice, takže když mě zapálíš, tak hezky voním. Nedělej to prosím ale.
+  - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který byl odlitý z formy a poté zpracován tak, aby vypadal co nejpřirozeněji.
+  - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který je velmi odolný a má dobrou flexibilitu. Proces odlévání silikonu byl dlouhý a náročný, ale výsledek stojí za to.
+  - text: Jsem vytvořen pomocí 3D tisku, takže mám poměrně precizní detaily a konstrukci.
+  - text: Materiál, ze kterého jsem vytvořen, se jmenuje PLA. Je to biologicky rozložitelný plast, který se vyrábí z kukuřice a dalších rostlin. Je ekologičtější než například ABS plast.
+  - text: Jsem vytvořen z materiálu PLA, což je plast vyrobený z kukuřice a dalších rostlin. Je ekologičtější než jiné druhy plastů a skvěle se hodí pro 3D tisk.
+  - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který poskytuje dobrou flexibilitu a odolnost. Proces odlévání silikonu zahrnoval přesné měření a kontrolu, aby byl výsledek co nejpřesnější.
+  - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který se pro své vlastnosti a kvalitu hodí pro tvorbu robotických obličejů.
+  utter_a_smile:
+  - text: :)
+  utter_a_sadness:
+  - text: :(
+  utter_a_disgust:
+  - text: :s
+  utter_a_anger:
+  - text: '>:('
+  utter_ask_name:
+  - text: 'Dobrý den, jak se jmenujete?'
+  - text: 'Vás ještě neznám, jak se jmenujete?'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- action_ask_person
+- action_tell_location
+- action_how_are_you
+- action_stop_blinking
+- action_start_blinking
+- utter_a_anger
+- utter_a_disgust
+- utter_a_sadness
+- utter_a_smile
+- utter_affirm
+- utter_ask_object
+- utter_ask_people
+- utter_ask_person
+- utter_deny
+- utter_goodbye
+- utter_greet
+- utter_identify_emotion
+- utter_identify_yourself
+- utter_mood_great
+- utter_mood_unhappy
+- utter_study_programs_fim_uhk
+- utter_take_offense
+- utter_what_are_you_made_of
+- utter_who_made_you
+- utter_ask_name

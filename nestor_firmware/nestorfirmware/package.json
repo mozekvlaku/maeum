@@ -1,0 +1,23 @@
+{
+  "name": "nestorfirmware",
+  "version": "1.0.0",
+  "description": "Nestor Firmware Houskeeper API Main Microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maeum 2023",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "i2c-bus": "^5.1.0",
+    "johnny-five": "^2.1.0",
+    "nodejs": "^0.0.0",
+    "nodemon": "^2.0.20",
+    "onoff": "^6.0.3",
+    "pca9685": "^5.0.0",
+    "servo-adafruit-pca9685": "^0.1.2"
+  }
+}

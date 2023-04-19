@@ -1,0 +1,229 @@
+version: "3.1"
+nlu:
+- intent: identify_client
+  examples: |
+    - jmenuju se [name](string)
+    - mé jméno je [name](string)
+    - jsem [name](string)
+- intent: greet
+  examples: |
+    - ahoj
+    - čau
+    - nazdar
+    - nazdárek
+    - ahojky
+    - čau fimbote
+    - ahoj nestore
+    - hej maeum
+    - dobrý den
+    - dobrý večer
+    - dobré ráno
+    - jak se vede
+    - čauky
+    - čauko
+    - hoj
+- intent: goodbye
+  examples: |
+    - tak se měj
+    - nashledanou
+    - tak ahoj
+    - pa pa
+    - pá pá
+- intent: affirm
+  examples: |
+    - ano
+    - jo
+    - přesně tak
+    - přesně
+    - jasně
+    - správně
+    - tak tak
+    - tak je to
+    - to je ono
+    - to je přesný
+    - jasný
+    - ano ano
+    - souhlasím
+    - souhlas
+- intent: deny
+  examples: |
+    - ne
+    - rozhodně ne
+    - ses posral
+    - špatně
+    - to ne
+    - ani náhodou
+    - prostě ne
+    - to není ono
+    - to je blbě
+    - blbě
+    - tak to není
+    - to fakt ne
+    - nesouhlasím
+    - nelíbí se mi to
+    - nesouhlas
+- intent: mood_great
+  examples: |
+    - skvěle
+    - mám se skvěle
+    - mám se dobře
+    - je mi dobře
+    - vše je skvělý
+    - dobrý
+    - dobrý to je
+    - super
+    - super skvělý
+    - jsem ok
+    - je mi skvěle
+    - mám radost
+- intent: mood_unhappy
+  examples: |
+    - hrozně
+    - hrozný
+    - je mi špatně
+    - jsem smutný
+    - mám depresi
+    - je mi fakt hnusně
+    - nic moc
+    - je to hrůza
+    - vše mě štve
+    - sere mě všechno
+    - nejradši bych se na všechno vyprdnul
+- intent: ask_object
+  examples: |
+    - co vidíš
+    - identifikuj objekt
+    - pověz mi co to je
+    - co to je
+    - řekni mi co to je
+    - co držím
+    - co to je za objekt
+    - popiš objekt
+- intent: ask_person
+  examples: |
+    - koho vidíš
+    - kdo to je
+    - co to je za osobu
+    - znáš toho člověka
+    - identifikuj obličej
+    - řekni mi kdo to je
+    - znáš ten obličej
+- intent: ask_people
+  examples: |
+    - identifikuj lidi
+    - koho všechno vidíš
+    - kdo je kolem tebe
+    - popiš mi všechny lidi kolem tebe
+    - řekni mi, kdo tady všechno je
+- intent: how_are_you
+  examples: |
+    - jak se máš
+    - jak se vede
+    - jak je dnes
+    - jak je dneska
+    - jak se cítíš
+    - je ti dobře
+    - identifikuj svou emoci
+- intent: start_blinking
+  examples: |
+    - mrkej
+    - začni mrkat
+    - spustit mrkání
+- intent: stop_blinking
+  examples: |
+    - nemrkej
+    - přestaň mrkat
+    - vypnout mrkání
+- intent: ask_emotion
+  examples: |
+    - jak se tvářím
+    - jak se tváří lidi kolem mě
+    - identifikuj emoci
+    - řekni mi emoci
+    - poznej mé emoce
+    - jak se cítím
+    - jak se cítí
+- intent: identify_yourself
+  examples: |
+    - kdo jsi
+    - popiš se
+    - identifikuj se
+    - jak se jmenuješ
+- intent: who_made_you
+  examples: |
+    - kdo tě vyrobil
+    - jak jsi byl vyroben
+    - kdo tě vytvořil
+- intent: what_are_you_made_of
+  examples: |
+    - z čeho jsi vyroben
+    - identifikuj své tělo
+    - jsi vytisknutý na 3D tiskárně
+    - z čeho jsi vyroben?
+    - z čeho jsi vytvořen
+- intent: action_smile
+  examples: |
+    - usměj se
+    - zasměj se
+    - řeknu ti vtip
+    - ukaž zuby
+    - směj se
+    - úsměv prosím
+    - simuluj úsměv
+    - simuluj radost
+- intent: action_sadness
+  examples: |
+    - buď smutný
+    - simuluj smutek
+    - zamrač se
+- intent: action_disgust
+  examples: |
+    - buď znechucený
+    - simuluj znechucení
+    - zvracení
+    - bleju
+    - fuj
+    - udělej fuj
+    - hnusný co
+- intent: action_anger
+  examples: |
+    - buď naštvaný
+    - simuluj naštvání
+    - naštvi se
+    - terminuj
+    - zabíjej
+    - ukonči
+    - ukončuj lidi
+- intent: study_programs_fim_uhk
+  examples: |
+    - Jaké studijní programy nabízí FIM UHK?
+    - Můžeš mi popsat studijní obory na FIM UHK?
+    - Jsou na FIM UHK i doktorské programy?
+    - Chci se zapsat na FIM UHK, jaké obory nabízíte?
+    - Můžeš mi říct, jaké jsou bakalářské programy na FIM UHK?
+    - Má FIM UHK i magisterské studijní programy?
+    - Které obory nabízí FIM UHK v kombinované formě studia?
+    - Chci se věnovat informačnímu managementu, nabízí FIM UHK tuto specializaci?
+    - Jsou na FIM UHK i obory v prezenční formě studia?
+    - Chci se věnovat ekonomii a managementu, nabízí FIM UHK tento obor?
+    - Co tady mám studovat
+    - Chci tady studovat
+    - Co mám studovat
+    - Co je tady škola
+- intent: take_offense
+  examples: |
+    - ty jsi ošklivej
+- intent: prompting_name
+  examples: |
+    - PROMPT--ASK_NAME
+- intent: where_are_we
+  examples: |
+    - kde to jsme?
+    - řekni mi kde se nacházíme
+- synonym: fimbot
+  examples: |
+    - maeum
+    - ty
+    - karel
+    - apuroid
+    - max

@@ -1,0 +1,25 @@
+version: "3.1"
+
+stories:
+
+- story: asking person
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: identify_yourself
+  - action: utter_identify_yourself
+
+- story: interactive_story_1
+  steps:
+  - intent: what_are_you_made_of
+  - action: utter_what_are_you_made_of
+  - intent: who_made_you
+  - action: utter_who_made_you
+  - intent: greet
+
+- story: interactive_story_1
+  steps:
+  - intent: take_offense
+  - action: utter_take_offense
+  - intent: where_are_we
+  - action: action_tell_location

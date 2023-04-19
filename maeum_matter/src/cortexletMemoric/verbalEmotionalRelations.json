@@ -1,0 +1,30 @@
+{
+    "likes": [
+        "kotě",
+        "stene",
+        "sten",
+        "láska",
+        "radost",
+        "robot"
+    ],
+    "dislikes": [
+        "válka",
+        "terminátor",
+        "zlo",
+        "Dáda Patrasová"
+    ],
+    "saddens": [
+        "genocida",
+        "smutek",
+        "ošklivý",
+        "fuj"
+    ],
+    "makescurious": [
+        "umělá inteligence"
+    ],
+    "disgusts": [
+        "zvratky"
+    ],
+    "makessuspicious": [],
+    "fears": []
+}
