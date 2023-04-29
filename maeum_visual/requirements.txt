@@ -3,6 +3,7 @@ Flask
 dlib
 opencv-python
 fer
+tensorflow
 moviepy
 imutils
 imageai

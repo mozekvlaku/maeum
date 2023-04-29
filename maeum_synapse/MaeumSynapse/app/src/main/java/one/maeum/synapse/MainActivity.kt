@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import one.maeum.synapse.ai.MaeumSpeechRecognition
-import one.maeum.synapse.di.uiModule
 import one.maeum.synapse.ui.AppContainer
 import one.maeum.synapse.ui.navigateCustom
 import one.maeum.synapse.ui.navigation.BottomNavItem
@@ -42,6 +40,8 @@ import one.maeum.synapse.ui.theme.MaeumSynapseTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
             var darkMode = false
             if(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)

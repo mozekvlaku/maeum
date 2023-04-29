@@ -9,7 +9,7 @@ sealed interface State {
     class Success(val any: Any? = null): State
 
     class Failure(
-        val throwable: Throwable
+        val throwable: Throwable?
     ): State
 
 }

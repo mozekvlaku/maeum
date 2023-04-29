@@ -49,7 +49,15 @@ class VideoCamera(object):
         self.known_face_names = []
         self.known_face_encodings = []
         self.unknown_delay_max = 100
-        self.video = cv2.VideoCapture('http://vebot:868686@192.168.102.140:8888/?action=stream')
+        self.emo_counter = 0
+        self.last = []
+        self.lastc = []
+        self.preds = []
+        self.flush_people = 0
+        self.lastf = []
+        # ''
+        self.video = cv2.VideoCapture(
+            'http://vebot:868686@192.168.102.140:8888/?action=stream')
         self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
         self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         for path in os.listdir(dir_path):
@@ -133,7 +141,7 @@ class VideoCamera(object):
         frame = cv2.resize(frame, None, fx=ds_factor, fy=ds_factor,
                            interpolation=cv2.INTER_AREA)
         frame = imutils.rotate(frame, -20)
-        if self.process_objects == 6:
+        if self.process_objects == 30:
             frame, self.preds = obj_detect.detectObjectsFromImage(input_image=frame,
                                                              output_type="array",
                                                              minimum_percentage_probability=10,
@@ -141,22 +149,28 @@ class VideoCamera(object):
                                                              display_object_name=True)
             # frame = tmp_frame
             batch = []
+            self.last = []
 
             for pred in self.preds:
                 batch.append({
                     "name": pred["name"],
                     "prob": pred["percentage_probability"]
                 })
-            url = "http://localhost:3000/matter/visual/maeumobj_batch"
-            params = {
-                "type": "object",
-                "batch": json.dumps(batch)
-            }
-            try:
-                r = requests.post(url, params=params)
-                print(r.json())
-            except requests.exceptions.RequestException as e:
-                print(e)
+                self.last.append(pred["name"])
+
+            if self.last != self.lastc:
+                url = "http://localhost:3000/matter/visual/maeumobj_batch"
+                params = {
+                    "type": "object",
+                    "batch": json.dumps(batch)
+                }
+                try:
+                    r = requests.post(url, params=params)
+                    print(r.json())
+                except requests.exceptions.RequestException as e:
+                    print(e)
+            
+            self.lastc = self.last
 
             self.process_objects = 0
         else:
@@ -175,7 +189,7 @@ class VideoCamera(object):
         if self.process_this_frame:
             # Resize frame of video to 1/4 size for faster face recognition processing
             small_frame = cv2.resize(frame, (0, 0), fx=0.250, fy=0.250)
-
+           
             # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
             rgb_small_frame = small_frame[:, :, ::-1]
 
@@ -204,18 +218,18 @@ class VideoCamera(object):
                     name = self.known_face_names[best_match_index]
                     if name not in self.faces_in_image:
                         self.faces_in_image.append(name)
-                        url = "http://localhost:3000/matter/visual/maeumobj"
-                        params = {
-                            "type": "person",
-                            "name": name,
-                            "id": "best_match_index",
-                            "prob": 1
+
+                if self.lastf != self.faces_in_image:
+                    url = "http://localhost:3000/matter/visual/maeumobj_batch"
+                    params = {
+                        "type": "person",
+                        "batch": json.dumps(self.faces_in_image)
                         }
-                        try:
-                            r = requests.post(url, params=params)
-                            print(r.json())
-                        except requests.exceptions.RequestException as e:
-                            print(e)
+                    try:
+                        r = requests.post(url, params=params)
+                        print(r.json())
+                    except requests.exceptions.RequestException as e:
+                        print(e)
 
                 if name == "Unknown":
                     if self.unknown_delay <= self.unknown_delay_max:
@@ -250,6 +264,12 @@ class VideoCamera(object):
                 self.face_names.append(name)
 
         self.process_this_frame = not self.process_this_frame
+
+        self.flush_people += 1
+
+        if self.flush_people == 30:
+            self.faces_in_image = []
+            self.flush_people = 0;
 
         # Print the location of each facial feature in this image
 
@@ -345,7 +365,7 @@ class VideoCamera(object):
                 40 * 7)), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 125,  255), 1)
             cv2.putText(frame, "neutral: " + str(self.emotions['neutral']), (1020, 200+(
                 40 * 8)), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 125,    255), 1)
-            if True: #self.last_emotion != highest:
+            if self.last_emotion != highest:
                 self.last_emotion = highest
                 url = "http://localhost:3000/matter/visual/maeumemo"
                 params = {
@@ -357,8 +377,20 @@ class VideoCamera(object):
                     print(r.json())
                 except requests.exceptions.RequestException as e:
                     print(e)
+        else:
+            if self.emo_counter > 70:
+                self.emo_counter = 0
+                url = "http://localhost:3000/matter/visual/noforeground"
+                try:
+                    r = requests.post(url)
+                    print(r.json())
+                except requests.exceptions.RequestException as e:
+                    print(e)
+                
+            else:
+                self.emo_counter = self.emo_counter + 1
 
-        cv2.putText(frame, "Maeum Visual Cortex v1.0.0" + position,
+        cv2.putText(frame, "Maeum Visual Cortex v1.1.0" + position,
                     (20, 40), font, 1.0, (255, 255, 255), 2)
         # Display the resulting image
         frame = self.overlay_transparent(frame, overlay, 0, 0)

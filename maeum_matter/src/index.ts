@@ -4,7 +4,7 @@ import CentralDispatcher          from './centralDispatcher';
 import BiomimeticCortexletActions from './cortexletBiomimetic/biomimeticCortexletActions';
 import BlinkingEngine             from './cortexletBiomimetic/blinkingEngine';
 import MimicryEngine              from './cortexletBiomimetic/mimicryEngine';
-import { EmotionPipeline }        from './cortexletEmotional/emotionPipeline';
+import { EmotionManager }        from './cortexletEmotional/emotionManager';
 import EmotionalCortexletActions  from './cortexletEmotional/emotionalCortexletActions';
 import MemoricCortexletActions    from './cortexletMemoric/memoricCortexletActions';
 import { VisualMemory }           from './cortexletMemoric/visualMemory';
@@ -20,6 +20,7 @@ import VisualProxy                from './cortexletVisual/visualProxy';
 import express                    from 'express';
 import cors                       from 'cors';
 import LongTermManager from './cortexletMemoric/longTermManager';
+import LifeEngine from './cortexletBiomimetic/lifeEngine';
 
 // Thirdparty definitions
 const app        = express();
@@ -44,30 +45,34 @@ const stateCollector    = new StateCollector(io, true);
 const longTermMemory    = new LongTermManager();
 const visualProxy       = new VisualProxy();
 const motoricManager    = new MotoricManager(longTermMemory);
-const mimicryEngine     = new MimicryEngine(motoricManager);
-const emotionPipeline   = new EmotionPipeline(mimicryEngine);
+const mimicryEngine     = new MimicryEngine(motoricManager, longTermMemory);
+const emotionManager    = new EmotionManager(mimicryEngine);
 const centralDispatcher = new CentralDispatcher();
-const verbalEmotion     = new VerbalEmotionParser(emotionPipeline);
-const visualMemory      = new VisualMemory(centralDispatcher, emotionPipeline);
-const verbalManager     = new VerbalManager(verbalEmotion, emotionPipeline, longTermMemory);
-const blinkingEngine    = new BlinkingEngine(motoricManager, emotionPipeline);
+const verbalEmotion     = new VerbalEmotionParser(emotionManager);
+const visualMemory      = new VisualMemory(centralDispatcher, emotionManager);
+const verbalManager     = new VerbalManager(verbalEmotion, emotionManager, motoricManager, longTermMemory, visualMemory);
+const blinkingEngine    = new BlinkingEngine(motoricManager, emotionManager, longTermMemory);
+const lifeEngine        = new LifeEngine(emotionManager,visualMemory, longTermMemory, motoricManager);
 
 // Cortexlet state observation subscribing
-stateCollector.observe_state(emotionPipeline);
+stateCollector.observe_state(emotionManager);
 stateCollector.observe_state(motoricManager);
 stateCollector.observe_state(visualMemory);
 stateCollector.observe_state(verbalManager);
 stateCollector.observe_state(longTermMemory);
 stateCollector.observe_state(blinkingEngine);
 stateCollector.observe_state(centralDispatcher);
+stateCollector.observe_state(visualProxy);
+stateCollector.observe_state(lifeEngine);
+stateCollector.observe_state(mimicryEngine);
 
 // Cortexlet actions
 const stateActions      = new StateCortexletActions(app, stateCollector);
 const motoricActions    = new MotoricCortexletActions(app, motoricManager);
 const memoricActions    = new MemoricCortexletActions(app, visualMemory);
-const emotionalActions  = new EmotionalCortexletActions(app, emotionPipeline);
+const emotionalActions  = new EmotionalCortexletActions(app, emotionManager);
 const verbalActions     = new VerbalCortexletActions(app, verbalManager, verbalEmotion);
-const biomimeticActions = new BiomimeticCortexletActions(app, mimicryEngine, blinkingEngine);
+const biomimeticActions = new BiomimeticCortexletActions(app, mimicryEngine, blinkingEngine, lifeEngine);
 
 /*longTermMemory.set_value((memoryObject)=>{
     memoryObject["biomimeticSettings"].blinking = false
@@ -101,15 +106,22 @@ app.get('/', (req: any, res: {
     res.send("<pre>" + br.get_branding().replace("\n", "<br>") + "</pre>");
 });
 
-io.on('connection', (socket: { on: (arg0: string, arg1: { (data: any): void; (): void; }) => void; broadcast: { emit: (arg0: string, arg1: any) => void; }; }) => {
-    console.log('Maeum Synapse Client connected');
+io.on('connection', (socket: {
+    id: string; on: (arg0: string, arg1: { (data: any): void; (): void; }) => void; broadcast: { emit: (arg0: string, arg1: any) => void; }; 
+}) => {
+    console.log('Maeum Synapse Client connected ' + socket.id);
+    process.stdout.write('\x07');
+    var sl = io;
+    setTimeout(()=>sl.emit("state", stateCollector.get_states()), 1600);
     
     // Odpojit klienta
     socket.on('disconnect', () => {
         console.log('Client disconnected');
+        process.stdout.write('\x07'); process.stdout.write('\x07');
     });
 });
 
 const matterSettings = longTermMemory.get_from_memory("matterSettings");
 app.listen(matterSettings.restPort, () => console.log('Matter REST Server listening on port ' + matterSettings.restPort +'...'));
 httpServer.listen(matterSettings.wsPort, () => console.log('Matter WebSocket Server listening on port ' + matterSettings.wsPort +'...'))
+

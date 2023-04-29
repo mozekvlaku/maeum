@@ -39,6 +39,24 @@ class VerbalCortexletActions {
             }
         })
 
+        this.app.post('/matter/verbal/rasa/off', async (req: any, res: any) => {
+            this.verbalManager.change_gpt_only_use_state(true);
+            console.log("Changed rasa")
+            res.json({
+                code: 1,
+                message: "Rasa off"
+            })
+        });
+
+        this.app.post('/matter/verbal/rasa/on', async (req: any, res: any) => {
+            this.verbalManager.change_gpt_only_use_state(false);
+            console.log("Changed rasa")
+            res.json({
+                code: 1,
+                message: "Rasa off"
+            })
+        });
+
         this.app.get('/matter/verbal/askname', async (_req: any, res: { json: (arg0: { message: string; code: number; returned: string }) => void; }) => {
             
                 this.verbalManager.send_to_rasa("PROMPT--ASK_NAME", function (data: string) {

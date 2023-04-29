@@ -20,10 +20,14 @@
         "fuj"
     ],
     "makescurious": [
-        "umělá inteligence"
+        "umělá inteligence",
+        "PROMPT--ASK_NAME"
     ],
     "disgusts": [
-        "zvratky"
+        "zvratky",
+        "hovno",
+        "kakat",
+        "vred"
     ],
     "makessuspicious": [],
     "fears": []

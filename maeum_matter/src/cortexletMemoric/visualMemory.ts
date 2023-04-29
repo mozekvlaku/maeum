@@ -1,6 +1,6 @@
 import fs from 'fs';
 import CentralDispatcher from "../centralDispatcher";
-import { EmotionPipeline } from "../cortexletEmotional/emotionPipeline";
+import { EmotionManager, EmotionOrigin, EmotionalState } from "../cortexletEmotional/emotionManager";
 import StatefulObject from "../cortexletState/statefulObject";
 
 class VisualMemory extends StatefulObject {
@@ -13,13 +13,15 @@ class VisualMemory extends StatefulObject {
     private person_in_foreground : String;
 
     private dispatcher           : CentralDispatcher;
-    private emotional            : EmotionPipeline;
+    private emotional            : EmotionManager;
 
     private last_array           : Array<String> = [];
 
+    private last_id              : String;
+
     // Implementovat triggery
 
-    constructor(dispatcher: CentralDispatcher, emotional: EmotionPipeline) {
+    constructor(dispatcher: CentralDispatcher, emotional: EmotionManager) {
         super();
         this.people_memory = new Array<MPerson>();
         this.object_memory = new Array<MObject>();
@@ -32,6 +34,38 @@ class VisualMemory extends StatefulObject {
 
         this.fill_memory_from_relations();
         this.fill_memory_from_profiles();
+    }
+
+    in_foreground(): String
+    {
+        return this.person_in_foreground
+    }
+
+    people_in_view_for_gpt(): String {
+        let response = "";
+        this.people_memory.forEach((person)=> {
+            if(person.in_view)
+            {
+                response += person.name + ", ten má náladu " + person.emotion_current + "\n\n";
+            }
+        })
+
+        if(response == "")
+            response = "Nikoho";
+
+        return response;
+    }
+
+    objects_in_view_for_gpt(): String {
+        let response = "";
+        this.object_memory.forEach((object) => {
+            response += object.count + "x " + object.name + ", k tomu objektu cítíš " + object.relation + "\n\n";
+        });
+
+        if (response == "")
+            response = "Nic";
+
+        return response;
     }
 
     update_object_memory(array: Array<MObject>) : void {
@@ -64,14 +98,53 @@ class VisualMemory extends StatefulObject {
             } else {
                 const objectClass = this.object_class.find(obj => obj.classification === element.name);
                 if (objectClass) {
-                    const { relation, cadence, name } = objectClass;
-                    objectMap[element.name] = new MObject(name, element.name, element.prob, relation, cadence);
+                    const { relation, cadence, name, icon } = objectClass;
+                    objectMap[element.name] = new MObject(name, element.name, element.prob, relation, cadence, icon);
+
+                    this.emotional.push_emotional_state_from_vm(relation, EmotionOrigin.VisualObject)
                 }
             }
         }
 
         const objectArr = Object.values(objectMap);
         this.update_object_memory(objectArr);
+    }
+
+    push_people_memory(array: Array<any>): void {
+        this.people_in_view = []
+        this.people_memory.forEach((value: MPerson) => {
+
+                value.in_view = false;
+            
+        });
+        for (const id of array) {
+        // Check if person exists
+        let exists: boolean = this.is_in_memory(id, MaeumObjectEnum.MPerson);
+
+        if (exists) {
+            this.people_memory.forEach((value: MPerson) => {
+
+                if (value.id == id) {
+                    value.in_view = true;
+                }
+            });
+            if (!this.people_in_view.includes(id)) {
+                this.people_in_view.push(id);
+                console.log(id);
+            }
+        }
+
+        if (!exists) {
+            this.last_id = id
+            this.dispatcher.add(
+                "MT", "MT", "matter/verbal/askname", "string::name", "matter/visual/person/add/:name", "MT"
+            )
+        }
+
+        
+        }
+
+        this.emit_state("person viewing");
     }
 
     get_state(): Object {
@@ -82,7 +155,8 @@ class VisualMemory extends StatefulObject {
             },
             view: {
                 people: this.people_in_view,
-                foreground: this.person_in_foreground
+                foreground: this.person_in_foreground,
+                last_id: this.last_id
             }
         }
     }
@@ -104,6 +178,19 @@ class VisualMemory extends StatefulObject {
         });
     }
 
+    create_profile(name: String) : void {
+        let tmp: MPerson = new MPerson(name, this.last_id, 1);
+        tmp.maeum_emotional_relation = EmotionalState[this.emotional.get_emotional_state()]
+        this.people_memory.push(tmp);
+
+        const jsonStr = JSON.stringify(tmp);
+
+        fs.writeFile(__dirname + '/people/'+this.last_id+'.json', jsonStr, (err) => {
+            if (err) throw err;
+            console.log('Profile created');
+        });
+    }
+
     get_foreground_person() : String {
         console.log(this.person_in_foreground);
         return this.get_from_memory(this.person_in_foreground, MaeumObjectEnum.MPerson).name;
@@ -114,8 +201,17 @@ class VisualMemory extends StatefulObject {
         let exists:boolean = this.is_in_memory(id, MaeumObjectEnum.MPerson);
 
         if(exists) {
-            this.people_in_view.push(id);
-            console.log(id);
+            this.people_memory.forEach((value: MPerson) => {
+                
+                if (value.id == id) {
+                    value.in_view = true;
+                }
+            });
+            if(!this.people_in_view.includes(id))
+            {
+                this.people_in_view.push(id);
+                console.log(id);
+            }
         }
 
         if(!exists) {
@@ -136,6 +232,10 @@ class VisualMemory extends StatefulObject {
             }
         });
     }
+
+    no_foreground(): void {
+        this.person_in_foreground = ""
+    } 
 
     add_to_memory(object:MaeumObject): String {
         let new_id:String = "N/A";
@@ -220,7 +320,7 @@ class VisualMemory extends StatefulObject {
 
             if(!in_memory) {
                 this.dispatcher.add(
-                    "MT", "MT", "/matter/verbal/askname", "string::name", "/matter/visual/person/add/:name", "MT"
+                    "MT", "MT", "matter/verbal/askname", "string::name", "/matter/visual/person/add/:name", "MT"
                 )
             }
         }
@@ -249,6 +349,7 @@ class MPerson extends MaeumObject {
     emotion_current: String = "neutral";
     // can be: positive, neutral, negative
     maeum_emotional_relation: String = "neutral";
+    in_view: Boolean = false;
     
     super(name: String, id: String, probability: Number) {
         this.name = name;
@@ -261,10 +362,12 @@ class MObject extends MaeumObject {
     relation: String;
     count: number = 1;
     cadence: number;
-    constructor(name: String, id: String, probability: Number, relation: String = "neutral", cadence: number = 0) {
+    icon: String;
+    constructor(name: String, id: String, probability: Number, relation: String = "neutral", cadence: number = 0, icon: String = "account") {
         super(name, id, probability);
         this.relation = relation;
         this.cadence = cadence;
+        this.icon = icon;
     }
 }
 

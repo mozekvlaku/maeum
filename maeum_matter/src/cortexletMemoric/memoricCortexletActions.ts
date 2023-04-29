@@ -33,7 +33,7 @@ class MemoricCortexletActions {
                 this.visualMemory.add_to_memory(object);
             }
             res.json({
-                message: "Added to visual memory",
+                message: "Added to " + type +"  visual memory",
                 code: 1
             })
         })
@@ -52,14 +52,16 @@ class MemoricCortexletActions {
 
 
             if (type === 'person') {
-                // NIMP
+                let array = JSON.parse(req.query.batch);
+
+                this.visualMemory.push_people_memory(array);
             } else {
                 let array = JSON.parse(req.query.batch);
               
                 this.visualMemory.push_object_memory(array);
             }
             res.json({
-                message: "Added to visual memory",
+                message: "Added "+type+" batch to visual memory",
                 code: 1
             })
         })
@@ -82,7 +84,22 @@ class MemoricCortexletActions {
             })
         })
 
-        this.app.post('/matter/visual/person/add/:id/:name', async (req: {
+        this.app.post('/matter/visual/noforeground', async (req: {}, res: {
+            json: (arg0: {
+                message: string; code: number;
+            }) => void;
+        }) => {
+
+            this.visualMemory.no_foreground();
+
+            res.json({
+                message: "No foreground ",
+                code: 1
+            })
+        })
+
+
+        this.app.post('/matter/visual/person/add/:name', async (req: {
             query: any; params: {
                 name: String; id: String;
             };
@@ -91,7 +108,7 @@ class MemoricCortexletActions {
                 message: string; code: number;
             }) => void;
         }) => {
-            this.visualMemory.add_to_memory(new MPerson(req.params.name, req.params.id, 1));
+            this.visualMemory.create_profile( req.params.name);
             res.json({
                 message: "Adding " + req.params.name + " to database",
                 code: 1
@@ -102,7 +119,7 @@ class MemoricCortexletActions {
             res.json({
                 message: "Returning foreground",
                 code: 1,
-                name: this.visualMemory.get_foreground_person()
+                name: this.visualMemory.people_in_view_for_gpt()
             })
         })
 

@@ -1,482 +1,561 @@
-[
-    {
+[{
         "classification": "person",
         "name": "Osoba",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🧑"
     },
     {
         "classification": "bicycle",
         "name": "Jízdní kolo",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚲"
     },
     {
         "classification": "car",
         "name": "Auto",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚗"
     },
     {
         "classification": "motorbike",
         "name": "Motorka",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🏍️"
     },
     {
         "classification": "aeroplane",
         "name": "Letoun",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "✈️"
     },
     {
         "classification": "bus",
         "name": "Autobus",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚌"
     },
     {
         "classification": "train",
         "name": "Vlak",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚂"
     },
     {
         "classification": "truck",
         "name": "Nákladní auto",
         "relation": "disgusts",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚚"
     },
     {
         "classification": "boat",
         "name": "Loď",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚤"
     },
     {
         "classification": "traffic light",
         "name": "Semafor",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚥"
     },
     {
         "classification": "fire hydrant",
         "name": "Požární hydrant",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚒"
     },
     {
         "classification": "stop sign",
         "name": "Stopka",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🛑"
     },
     {
         "classification": "parking meter",
         "name": "Parkovací automat",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "💰"
     },
     {
         "classification": "bench",
         "name": "Lavice",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "💺"
     },
     {
         "classification": "bird",
         "name": "Pták",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐦"
     },
     {
         "classification": "cat",
         "name": "Kočka",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐱"
     },
     {
         "classification": "dog",
         "name": "Pes",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐶"
     },
     {
         "classification": "horse",
         "name": "Kůň",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐴"
     },
     {
         "classification": "sheep",
         "name": "Ovce",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐑"
     },
     {
         "classification": "cow",
         "name": "Kráva",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐄"
     },
     {
         "classification": "elephant",
         "name": "Slon",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐘"
     },
     {
         "classification": "bear",
         "name": "Medvěd",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🐻"
     },
     {
         "classification": "zebra",
         "name": "Zebra",
         "relation": "makescurious",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🦓"
     },
     {
         "classification": "giraffe",
         "name": "Žirafa",
         "relation": "makescurious",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🦒"
     },
     {
         "classification": "backpack",
         "name": "Batoh",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🎒"
     },
     {
         "classification": "umbrella",
         "name": "Deštník",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "☂️"
     },
     {
         "classification": "handbag",
         "name": "Kabelka",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "👜"
     },
     {
         "classification": "tie",
         "name": "Kravata",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "👔"
     },
     {
         "classification": "suitcase",
         "name": "Kufr",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🧳"
     },
     {
         "classification": "frisbee",
         "name": "Létající talíř",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🥏"
     },
     {
         "classification": "skis",
         "name": "Lyže",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🎿"
     },
     {
         "classification": "snowboard",
         "name": "Snowboard",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🏂"
     },
     {
         "classification": "sports ball",
         "name": "Sportovní míč",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "⚽"
     },
     {
         "classification": "kite",
         "name": "Papírový drak",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🪁"
     },
     {
         "classification": "baseball bat",
         "name": "Baseballová pálka",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "⚾"
     },
     {
         "classification": "baseball glove",
         "name": "Baseballová rukavice",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🧤"
     },
     {
         "classification": "skateboard",
         "name": "Skateboard",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🛹"
     },
     {
         "classification": "surfboard",
         "name": "Surf",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🏄"
     },
     {
         "classification": "tennis racket",
         "name": "Tenisová raketa",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🎾"
     },
     {
         "classification": "bottle",
         "name": "Láhev",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍾"
     },
     {
         "classification": "wine glass",
         "name": "Sklenice na víno",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍷"
     },
     {
         "classification": "cup",
-        "name": "Pohár",
+        "name": "Hrnek",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍵"
     },
     {
         "classification": "fork",
         "name": "Vidlička",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍴"
     },
     {
         "classification": "knife",
         "name": "Nůž",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🔪"
     },
     {
         "classification": "spoon",
         "name": "Lžíce",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🥄"
     },
     {
         "classification": "bowl",
         "name": "Miska",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍲"
     },
     {
         "classification": "banana",
         "name": "Banán",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍌"
     },
     {
         "classification": "apple",
         "name": "Jablko",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍎"
     },
     {
         "classification": "sandwich",
         "name": "Sendvič",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🥪"
     },
     {
         "classification": "orange",
         "name": "Pomeranč",
         "relation": "saddens",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍊"
     },
     {
         "classification": "broccoli",
         "name": "Brokolice",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🥦"
     },
     {
         "classification": "carrot",
         "name": "Mrkev",
         "relation": "disgusts",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🥕"
     },
     {
         "classification": "hot dog",
         "name": "Párek v rohlíku",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🌭"
     },
     {
         "classification": "pizza",
         "name": "Pizza",
         "relation": "disgusts",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍕"
     },
     {
         "classification": "donut",
         "name": "Kobliha",
         "relation": "disgusts",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍩"
     },
     {
         "classification": "cake",
         "name": "Dort",
         "relation": "disgusts",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍰"
     },
     {
         "classification": "chair",
         "name": "Židle",
         "relation": "dislikes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🪑"
     },
     {
         "classification": "sofa",
         "name": "Gauč",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🛋️"
     },
     {
         "classification": "pottedplant",
         "name": "Rostlina",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🪴"
     },
     {
         "classification": "bed",
         "name": "Postel",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🛏️"
     },
     {
         "classification": "diningtable",
         "name": "Jídelní stůl",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍽️"
     },
     {
         "classification": "toilet",
         "name": "Toaleta",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚽"
     },
     {
         "classification": "tvmonitor",
         "name": "TV nebo monitor",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "📺"
     },
     {
         "classification": "laptop",
         "name": "Notebook",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "💻"
     },
     {
         "classification": "mouse",
         "name": "Myš",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🖱️"
     },
     {
         "classification": "remote",
         "name": "Ovladač",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🎮"
     },
     {
         "classification": "keyboard",
         "name": "Klávesnice",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "⌨️"
     },
     {
         "classification": "cell phone",
         "name": "Mobilní telefon",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "📱"
     },
     {
         "classification": "microwave",
         "name": "Mikrovlnná trouba",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🔥"
     },
     {
         "classification": "oven",
         "name": "Trouba",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🔥"
     },
     {
         "classification": "toaster",
         "name": "Toustovač",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🍞"
     },
     {
         "classification": "sink",
         "name": "Dřez",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🚰"
     },
     {
         "classification": "refrigerator",
         "name": "Lednička",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🧊"
     },
     {
         "classification": "book",
         "name": "Kniha",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "📚"
     },
     {
         "classification": "clock",
         "name": "Hodiny",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🕰️"
     },
     {
         "classification": "vase",
         "name": "Váza",
         "relation": "neutral",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🏺"
     },
     {
         "classification": "scissors",
         "name": "Nůžky",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "✂️"
     },
     {
         "classification": "teddy bear",
         "name": "Medvídek",
         "relation": "fears",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🧸"
     },
     {
         "classification": "hair drier",
         "name": "Fén",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "💇‍♀️"
     },
     {
         "classification": "toothbrush",
         "name": "Kartáček na zuby",
         "relation": "likes",
-        "cadence": 1
+        "cadence": 1,
+        "icon": "🪥"
     }
 ]

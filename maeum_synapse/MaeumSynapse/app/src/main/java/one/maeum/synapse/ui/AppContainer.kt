@@ -1,6 +1,7 @@
 package one.maeum.synapse.ui
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Icon
 import android.os.Handler
 import android.util.Log
 import android.view.Window
@@ -11,10 +12,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.darkColors
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
-import androidx.compose.material.icons.Icons
+import androidx.compose.material3.Icon
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -40,6 +42,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import kotlinx.coroutines.launch
 import one.maeum.synapse.R
 import one.maeum.synapse.ai.MaeumSpeechRecognition
+import one.maeum.synapse.matter.model.response.MatterState
 import one.maeum.synapse.matter.repository.MatterRepository
 import one.maeum.synapse.ui.navigation.BottomNavItem
 import one.maeum.synapse.ui.theme.MaeumSynapseTheme
@@ -85,8 +88,7 @@ fun AppContainer(
                         )
                     }
 
-
-
+                Log.d("Test", "Loading UI")
 
                 MyUI(controller, viewModel)
             }
@@ -108,7 +110,8 @@ fun MyUI(controller: NavHostController,
     val bottomSheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = skipPartiallyExpanded
     )
-
+    val cstate = viewModel.matterState?.collectAsState()
+    val state = viewModel.state.collectAsState()
     val context = LocalContext.current
 
     val recognition = MaeumSpeechRecognition(context)
@@ -124,7 +127,11 @@ fun MyUI(controller: NavHostController,
         {
             if (it != null) {
                 SuperValue = it
-                viewModel.sendToAI(it)
+                recognition.stop()
+
+
+                    viewModel.sendToAI(it)
+
                 Log.d("TAG", "Recognition done" + it)
             }
         },
@@ -145,10 +152,8 @@ fun MyUI(controller: NavHostController,
         {
             Status = "❌"
 
-            Handler().postDelayed({
                 SuperValue = "..."
                 recognition.stop()
-            }, 1000)
             Log.d("TAG", "Recognition stopped listening")
         }
     )
@@ -160,10 +165,11 @@ fun MyUI(controller: NavHostController,
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground,
         topBar = {
-            MyTopBar(controller)
+            MyTopBar(controller, viewModel)
         },
         floatingActionButton = { FloatingActionButton(
-            onClick = { openBottomSheet = true },
+            onClick = { openBottomSheet = true
+                recognition.start()},
         ) { Icon(Icons.Filled.Mic, "Localized Description") } },
         floatingActionButtonPosition = FabPosition.End
         /* scaffoldState = scaffoldState,*/
@@ -179,12 +185,12 @@ fun MyUI(controller: NavHostController,
                 composable(
                     route = DestinationHome
                 ) {
-                    HomeScreen()
+                    HomeScreen(cstate = cstate as State<MatterState>, state = state)
                 }
                 composable(
                     route = DestinationChat
                 ) {
-                    ChatScreen()
+                    ChatScreen(cstate = cstate as State<MatterState>)
                 }
                 composable(
                     route = DestinationEmotions
@@ -199,7 +205,7 @@ fun MyUI(controller: NavHostController,
                 composable(
                     route = DestinationSettingsBase
                 ) {
-                    SettingsScreen()
+                    SettingsScreen(cstate = cstate as State<MatterState>, state = state)
 
                 }
             }
@@ -220,7 +226,7 @@ fun MyUI(controller: NavHostController,
                     ) {
 
 
-                        recognition.start()
+
                         Log.d("TAG", "Recognition start")
                         Text(
                             text=SuperValue,
@@ -240,7 +246,7 @@ fun MyUI(controller: NavHostController,
 
 @ExperimentalMaterial3Api
 @Composable
-fun MyTopBar(controller: NavHostController) {
+fun MyTopBar(controller: NavHostController, viewModel: AppContainerViewModel) {
 
 
 
@@ -256,24 +262,18 @@ fun MyTopBar(controller: NavHostController) {
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = Color.Transparent
         ),
-        navigationIcon = {
-/*
-                AssistChip(
-                    onClick = { /* Do something! */ },
-                    label = { Text("Radostný") },
-                    modifier = Modifier.padding(start = 10.dp ),
-                    leadingIcon = {
-                        Icon(
-                            Icons.Filled.Mood,
-                            contentDescription = "Nálada",
-                            Modifier.size(AssistChipDefaults.IconSize)
-                        )
-                    }
+        actions = {
+                val cls = IconButtonDefaults.iconButtonColors(
+                    containerColor = MaterialTheme.colorScheme.errorContainer,
+                    contentColor = MaterialTheme.colorScheme.onErrorContainer
                 )
-*/
+                FilledTonalIconButton(onClick = { viewModel.emergency() }, colors = cls) {
+                    Icon(Icons.Filled.Warning, "")
+                }
+
 
         },
-        actions = {
+        navigationIcon = {
 
             IconButton(
                 onClick = {

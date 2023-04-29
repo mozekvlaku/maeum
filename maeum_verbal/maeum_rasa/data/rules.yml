@@ -4,23 +4,33 @@ rules:
 
 - rule: Do smile
   steps:
-  - intent: action_smile
-  - action: utter_a_smile
+  - intent: emotion_smile
+  - action: doemo_happy
 
 - rule: Do sadness
   steps:
-  - intent: action_sadness
-  - action: utter_a_sadness
+  - intent: emotion_sadness
+  - action: doemo_sad
   
 - rule: Do disgust
   steps:
-  - intent: action_disgust
-  - action: utter_a_disgust
+  - intent: emotion_disgust
+  - action: doemo_disgust
   
 - rule: Do anger
   steps:
-  - intent: action_anger
-  - action: utter_a_anger
+  - intent: emotion_anger
+  - action: doemo_anger
+
+- rule: Do fear
+  steps:
+  - intent: emotion_fear
+  - action: doemo_fear
+    
+- rule: Do neutral
+  steps:
+  - intent: emotion_neutral
+  - action: doemo_neutral
   
 - rule: Identify human
   steps:
@@ -66,3 +76,63 @@ rules:
   steps:
   - intent: how_are_you
   - action: action_how_are_you
+
+- rule: mon
+  steps:
+  - intent: motors_on
+  - action: action_motors_on
+
+- rule: moff
+  steps:
+  - intent: motors_off
+  - action: action_motors_off
+
+- rule: mimon
+  steps:
+  - intent: mimic_on
+  - action: action_mimics_on
+
+- rule: mimoff
+  steps:
+  - intent: mimic_off
+  - action: action_mimics_off
+
+- rule: auton
+  steps:
+  - intent: simulator_on
+  - action: action_auto_on
+
+- rule: autoff
+  steps:
+  - intent: simulator_off
+  - action: action_auto_off
+
+- rule: eyes_close
+  steps:
+  - intent: close_eyes
+  - action: action_close_eyes
+
+- rule: eyes_open
+  steps:
+  - intent: open_eyes
+  - action: action_open_eyes
+
+- rule: sleep
+  steps:
+  - intent: sleep
+  - action: action_sleep
+
+- rule: wake
+  steps:
+  - intent: wake
+  - action: action_wake
+
+- rule: rasa_off
+  steps:
+  - intent: rasa_off
+  - action: action_rasa_off
+
+- rule: identify_client
+  steps:
+  - intent: identify_client
+  - action: action_add_human

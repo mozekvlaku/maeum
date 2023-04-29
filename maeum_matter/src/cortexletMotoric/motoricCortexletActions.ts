@@ -23,6 +23,17 @@ class MotoricCortexletActions {
                 message: "Moving"
             })
         })
+
+        this.app.post('/matter/motoric/:side/:state', async (req: any, res: any) => {
+            const { side, state } = req.params;
+            this.motoricManager.change_servo_power(side, state);
+            console.log(`Changed power for ${side} to ${state}`);
+            res.json({
+                code: 1,
+                message: `${side} ${state}`
+            });
+        });
+
     }
 }
 

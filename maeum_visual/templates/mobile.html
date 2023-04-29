@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <title>Video Streaming Demonstration</title>
+  <style>
+    html {
+      background-color: black;
+      width: 450px;
+      position:absolute;
+     
+    }
+* { overflow: hidden}
+    #bg {
+      rotate: 90deg;
+      position: absolute;
+      width: 740px;
+      height: 390px;
+          top: 176px;
+    left: -185px;
+    }
+  </style>
+</head>
+
+<body>
+  <img id="bg" src="{{ url_for('video_feed') }}">{{ url_for('video_feed') }}
+</body>
+
+</html>

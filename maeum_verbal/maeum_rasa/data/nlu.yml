@@ -2,9 +2,109 @@ version: "3.1"
 nlu:
 - intent: identify_client
   examples: |
-    - jmenuju se [name](string)
-    - mé jméno je [name](string)
-    - jsem [name](string)
+    - jmenuju se [Tomáš]{"entity": "jmeno", "value": "Tomáš"}
+    - mé jméno je [Jihlavanka]{"entity": "jmeno", "value": "Jihlavanka"}
+    - jsem [Jiří]{"entity": "jmeno", "value": "Jiří"}
+
+- intent: mimic_off
+  examples: |
+    - Prosím vypni mimiku.
+    - Netvař se.
+    - Nemimuj, prosím.
+    - Zastav prosím výraz tváře.
+    - Můžeš mi prosím vypnout mimiku?
+
+- intent: mimic_on
+  examples: |
+    - Zapni prosím mimiku.
+    - Prosím zapni výraz tváře.
+    - Nastav prosím mimiku.
+    - Můžeš mi prosím zapnout mimiku?
+    - Prosím aktivuj výraz tváře.
+
+- intent: simulator_off
+  examples: |
+    - Prosím vypni rozhlížení.
+    - Nerozhlížej se.
+    - Zastav prosím simulátor života.
+    - Nemůžeš se prosím rozhlížet?
+    - Můžeš mi prosím vypnout simulátor života?
+
+- intent: simulator_on
+  examples: |
+    - Prosím zapni rozhlížení.
+    - Začni se prosím rozhlížet.
+    - Spusť prosím simulátor života.
+    - Můžeš mi prosím spustit simulátor života?
+    - Rozhlížej se prosím.
+
+
+
+- intent: emotion_fear
+  examples: |
+    - Prosím nastav strach.
+    - Buď prosím vystrašený.
+    - Můžeš mi prosím nastavit strach?
+    - Cítím se prosím děsivě.
+    - Znepokojuji se prosím.
+
+- intent: emotion_neutral
+  examples: |
+    - Chci, aby ses uklidnil
+    - Nechci, aby sis dělal hlavu
+    - Nastav mi em. stav na Neutral
+    - Buď neutrální
+    - Uklidni se
+    - Chci tě vidět v neutrálním stavu
+- intent: rasa_off
+  examples: |
+    - Vypni verbální kortex
+    - Nechci slyšet tvé odpovědi
+    - Nastav hodnotu "skip_rasa" na true
+    - Chci se bavit bez tvojí řeči
+    - Můžeš přestat mluvit?
+- intent: close_eyes
+  examples: |
+    - Zavři oči
+    - Chci vidět, jak to vypadá, když máš oči zavřené
+    - Ukonči vizuální vstup
+    - Jdi do režimu bez zraku
+    - Nekuk na mě
+- intent: open_eyes
+  examples: |
+    - Otevři oči
+    - Chci vidět, jak to vypadá, když máš oči otevřené
+    - Spusť vizuální vstup
+    - Jdi do režimu se zrakem
+    - Koukej na mě
+- intent: motors_off
+  examples: |
+    - Vypni motory
+    - Nechci, aby jsi se hýbal
+    - Zastav pohyb
+    - Ukonči příkon motorů
+    - Nekymácej se
+- intent: motors_on
+  examples: |
+    - Zapni motory
+    - Chci tě vidět v pohybu
+    - Spusť pohyb
+    - Zapni příkon motorů
+    - Běhej, Nestore
+- intent: sleep
+  examples: |
+    - Usni, běž spát
+    - Chci, aby ses vypnul
+    - Jdi do režimu spánku
+    - Chci, aby jsi přestal fungovat
+    - Půjdeš si odpočinout?
+- intent: wake
+  examples: |
+    - Probuď se
+    - Chci, abys fungoval
+    - Vrať se do aktivního režimu
+    - Probudit se
+    
 - intent: greet
   examples: |
     - ahoj
@@ -108,8 +208,6 @@ nlu:
     - identifikuj obličej
     - řekni mi kdo to je
     - znáš ten obličej
-- intent: ask_people
-  examples: |
     - identifikuj lidi
     - koho všechno vidíš
     - kdo je kolem tebe
@@ -161,7 +259,7 @@ nlu:
     - jsi vytisknutý na 3D tiskárně
     - z čeho jsi vyroben?
     - z čeho jsi vytvořen
-- intent: action_smile
+- intent: emotion_smile
   examples: |
     - usměj se
     - zasměj se
@@ -171,12 +269,12 @@ nlu:
     - úsměv prosím
     - simuluj úsměv
     - simuluj radost
-- intent: action_sadness
+- intent: emotion_sadness
   examples: |
     - buď smutný
     - simuluj smutek
     - zamrač se
-- intent: action_disgust
+- intent: emotion_disgust
   examples: |
     - buď znechucený
     - simuluj znechucení
@@ -185,7 +283,7 @@ nlu:
     - fuj
     - udělej fuj
     - hnusný co
-- intent: action_anger
+- intent: emotion_anger
   examples: |
     - buď naštvaný
     - simuluj naštvání

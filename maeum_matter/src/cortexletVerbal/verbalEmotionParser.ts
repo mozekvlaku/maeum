@@ -1,11 +1,11 @@
-import { EmotionPipeline, EmotionalState, EmotionOrigin } from "../cortexletEmotional/emotionPipeline";
+import { EmotionManager, EmotionalState, EmotionOrigin } from "../cortexletEmotional/emotionManager";
 import { LangCs, StemmerCs } from '@nlpjs/lang-cs';
 import { Container } from '@nlpjs/core';
 import { SentimentAnalyzer } from '@nlpjs/sentiment';
 import fs from 'fs';
 import path from 'path';
 class VerbalEmotionParser {
-    private pipeline: EmotionPipeline;
+    private pipeline: EmotionManager;
     private likes: Array<string> = [];
     private dislikes: Array<string> = [];
     private saddens: Array<string> = [];
@@ -14,7 +14,7 @@ class VerbalEmotionParser {
     private makessuspicious: Array<string> = [];
     private fears: Array<string> = [];
 
-    constructor(pipeline: EmotionPipeline) {
+    constructor(pipeline: EmotionManager) {
         this.pipeline = pipeline;
         this.load_data();
     }
@@ -29,10 +29,10 @@ class VerbalEmotionParser {
             case "neutral":
             break;
             case "negative":
-                this.pipeline.push_emotional_state(EmotionalState.Angry, 100, EmotionOrigin.VerbalTone);
+                this.pipeline.push_emotional_state(EmotionalState.Angry, 10, EmotionOrigin.VerbalTone);
                 break;
                 case "positive":
-                this.pipeline.push_emotional_state(EmotionalState.Happy, 100, EmotionOrigin.VerbalTone);
+                this.pipeline.push_emotional_state(EmotionalState.Happy, 10, EmotionOrigin.VerbalTone);
                 break;
                 default: 
                 break;

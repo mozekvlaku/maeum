@@ -1,20 +1,43 @@
 import fs from 'fs';
 import path from 'path';
-import { EmotionalState } from '../cortexletEmotional/emotionPipeline';
+import { EmotionalState } from '../cortexletEmotional/emotionManager';
 import MotoricManager from '../cortexletMotoric/motoricManager';
-class MimicryEngine {
-    private expressions: string = __dirname + "/expressions"; 
+import LongTermManager from '../cortexletMemoric/longTermManager';
+import StatefulObject from '../cortexletState/statefulObject';
+class MimicryEngine extends StatefulObject {
+    private expressions: string = __dirname + "/expressions";
+    public IDENTIFIER: string = "me";
     private motoricManager: MotoricManager;
+    private longTermMemory: LongTermManager;
     private expressionModel: ExpressionModel;
+    private doMimics: Boolean = false;
 
-    constructor(motoricManager: MotoricManager) {
+    constructor(motoricManager: MotoricManager, longTermMemory: LongTermManager) {
+        super();
         this.motoricManager = motoricManager;
+        this.longTermMemory = longTermMemory;
+        this.doMimics = longTermMemory.get_from_memory("biomimeticSettings").mimics;
         this.expressionModel = new ExpressionModel();
         this.load_emotional_expressions();
     }
 
+    change_mimics_state(state: Boolean) {
+        this.doMimics = state;
+        this.longTermMemory.set_value((memoryObject) => {
+            memoryObject["biomimeticSettings"].mimics = state
+        });
+        //this.emit_state("change")
+    }
+
+    get_state(): Object {
+        return {
+            "doing_mimics": this.doMimics
+        }
+    }
+
     do_emotional_expression(expression: EmotionalState): void {
-        this.expressionModel.get_expression(expression, this.motoricManager);
+        if(this.doMimics)
+            this.expressionModel.get_expression(expression, this.motoricManager);
     }
 
     load_emotional_expressions(): void {
@@ -42,6 +65,7 @@ class ExpressionModel {
     private suspiciousModel: Array<Object> = [];
     private disgustedModel: Array<Object> = [];
     private surprisedModel: Array<Object> = [];
+    private sleepyModel: Array<Object> = [];
 
     constructor() {}
     load_expression(expressionName: string, expressionData: Object): void {
@@ -70,6 +94,12 @@ class ExpressionModel {
                 break;
             case /grossout/.test(expressionName):
                 this.disgustedModel.push(expressionData);
+                break; 
+            case /suspicious/.test(expressionName):
+                this.suspiciousModel.push(expressionData);
+                break;
+            case /sleepy/.test(expressionName):
+                this.sleepyModel.push(expressionData);
                 break;
             default:
             break;
@@ -103,6 +133,9 @@ class ExpressionModel {
                 break;
             case EmotionalState.Suspicious:
                 motoricManager.send_set(this.get_random_expression(this.suspiciousModel));
+                break;
+            case EmotionalState.Sleepy:
+                motoricManager.send_set(this.get_random_expression(this.sleepyModel));
                 break;
             default:
             break;

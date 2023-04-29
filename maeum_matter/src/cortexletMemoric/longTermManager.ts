@@ -22,6 +22,8 @@ class LongTermManager extends StatefulObject {
         change(this.memory);
         
         fs.writeFileSync(__dirname + "/longTermMemory.json", JSON.stringify(this.memory));
+
+        this.emit_state("memchange")
     }
 
     get_state(): Object {

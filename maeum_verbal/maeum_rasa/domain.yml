@@ -25,12 +25,22 @@ intents:
 - who_are_you
 - who_made_you
 - prompting_name
+- motors_off
+- motors_on
+- mimic_on
+- mimic_off
+- simulator_on
+- simulator_off
+- emotion_fear
+- emotion_neutral
 slots:
   emotion:
     type: list
     influence_conversation: true
     mappings:
     - type: custom
+entities:
+  - jmeno
 responses:
   utter_take_offense:
   - text: no dovol, zraňuješ mě
@@ -45,20 +55,6 @@ responses:
   - text: Nashledanou, rád jsem vás viděl.
   - text: Tak ahoj
   - text: Ahoj
-  utter_affirm:
-  - text: Great, glad to hear it!
-  utter_deny:
-  - text: I'm sorry to hear that. Is there anything I can do to help?
-  utter_mood_great:
-  - text: I'm glad to hear you're feeling great! Is there anything I can help you with?
-  utter_mood_unhappy:
-  - text: I'm sorry to hear you're feeling down. Is there anything I can do to help?
-  utter_ask_object:
-  - text: What object are you interested in?
-  utter_ask_people:
-  - text: What kind of people are you looking for?
-  utter_identify_emotion:
-  - text: Vypadá to, že se usmíváš
   utter_study_programs_fim_uhk:
   - text: FIM UHK nabízí bakalářský program v oboru Aplikovaná informatika v prezenční i kombinované formě studia.
   - text: Ekonomika a management je další bakalářský program, který nabízíme na FIM UHK.
@@ -110,14 +106,6 @@ responses:
   - text: Jsem vytvořen z materiálu PLA, což je plast vyrobený z kukuřice a dalších rostlin. Je ekologičtější než jiné druhy plastů a skvěle se hodí pro 3D tisk.
   - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který poskytuje dobrou flexibilitu a odolnost. Proces odlévání silikonu zahrnoval přesné měření a kontrolu, aby byl výsledek co nejpřesnější.
   - text: Můj obličej je vytvořen z silikonu Ecoflex 00, který se pro své vlastnosti a kvalitu hodí pro tvorbu robotických obličejů.
-  utter_a_smile:
-  - text: :)
-  utter_a_sadness:
-  - text: :(
-  utter_a_disgust:
-  - text: :s
-  utter_a_anger:
-  - text: '>:('
   utter_ask_name:
   - text: 'Dobrý den, jak se jmenujete?'
   - text: 'Vás ještě neznám, jak se jmenujete?'
@@ -130,10 +118,24 @@ actions:
 - action_how_are_you
 - action_stop_blinking
 - action_start_blinking
-- utter_a_anger
-- utter_a_disgust
-- utter_a_sadness
-- utter_a_smile
+- action_sleep
+- action_wake
+- action_rasa_off
+- action_close_eyes
+- action_open_eyes
+- action_auto_on
+- action_auto_off
+- action_mimics_on
+- action_mimics_off
+- action_motors_on
+- action_motors_off
+- action_add_human
+- doemo_happy
+- doemo_sad
+- doemo_disgust
+- doemo_anger
+- doemo_fear
+- doemo_neutral
 - utter_affirm
 - utter_ask_object
 - utter_ask_people

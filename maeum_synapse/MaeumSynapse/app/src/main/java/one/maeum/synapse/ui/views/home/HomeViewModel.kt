@@ -10,26 +10,6 @@ class HomeViewModel(
     private val matterRepository: MatterRepository
 ): BaseViewModel() {
 
-    private val stateGotten = MutableStateFlow<MatterStateResponse>(MatterStateResponse("", 1, null))
-    val stateGottenGoneGottenNow = stateGotten.asStateFlow()
 
-    init {
-        fetchState()
-    }
-
-    fun fetchState() = launch(
-        block = {
-            matterRepository.getState().also {
-                if (it != null) {
-                    stateGotten.emit(it)
-                }
-            }
-
-            // Ekvivalent kodu vyse
-//            val data = spaceXRepository.fetchAllSuccessfulLaunches()
-//            _successRocketLaunches.emit(data)
-//            return@launch data
-        }
-    )
 
 }

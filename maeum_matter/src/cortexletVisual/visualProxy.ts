@@ -3,6 +3,7 @@ import http from 'http';
 import path from 'path';
 import MjpegConsumer from 'mjpeg-consumer';
 import axios from 'axios';
+import StatefulObject from '../cortexletState/statefulObject';
 
 const app = express();
 const httpServer = require('http').createServer(app);
@@ -15,17 +16,18 @@ const io = require('socket.io')(httpServer,
 });
 // Připojení k serveru pomocí Socket.io
 
-class VisualProxy {
-    private isStreaming: boolean;
-
+class VisualProxy extends StatefulObject {
+    private isStreaming: boolean = true;
+    public IDENTIFIER: string = "vp";
 
     private latestFrame: any;
     private socket: any;
     private socket_loaded: Boolean = false;
 
     constructor() {
+        super()
         const streamUrl = 'http://127.0.0.1:5001/video_feed';
-        this.isStreaming = false;
+        this.isStreaming = true;
 
 /*
 
@@ -57,7 +59,7 @@ class VisualProxy {
 
 
         // Odběr streamu pomocí Axios
-        axios({
+       /* axios({
             method: 'get',
             url: streamUrl,
             responseType: 'stream'
@@ -80,7 +82,7 @@ class VisualProxy {
             .catch((error) => {
                 console.error(error);
                 this.isStreaming = false;
-            });
+            });*/
 
 /*
 /*
@@ -148,6 +150,12 @@ class VisualProxy {
             console.log('[VISUALPROXY] Server is listening on port 3001');
             startStream();
         });*/
+    }
+
+    get_state(): Object {
+        return {
+            visual_online: this.isStreaming
+        }
     }
 }
 

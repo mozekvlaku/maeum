@@ -4,6 +4,8 @@ import StatefulObject from "./cortexletState/statefulObject";
 class CentralDispatcher extends StatefulObject {
     dispatch: Array<DispatchTask>;
     public IDENTIFIER: string = "cd";
+    private dispatchable = true;
+
     constructor() {
         super()
         this.dispatch = new Array<DispatchTask>();
@@ -25,10 +27,19 @@ class CentralDispatcher extends StatefulObject {
         }
     }
 
+    timeout_dispatch() :void {
+        this.dispatchable = false;
+
+        setTimeout(() => {
+            this.dispatchable = true;
+        }, 40000)
+    }
+
     add(source: any, target: any, command: string, return_value: string, return_interface: any, return_target: any) {
         let dispatchTask = new DispatchTask(source, target, command, return_value, return_interface, return_target);
-        this.dispatch.push(dispatchTask);
-        console.log("Adding " + command + " to dispatcher ");
+        if(this.dispatchable)
+            this.dispatch.push(dispatchTask);
+        this.timeout_dispatch()
     }
 
     add_from_cdcall(cdcall: string)

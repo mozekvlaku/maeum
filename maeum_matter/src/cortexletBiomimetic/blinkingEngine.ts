@@ -1,11 +1,13 @@
-import { EmotionalState, EmotionPipeline } from "../cortexletEmotional/emotionPipeline";
+import { EmotionalState, EmotionManager } from "../cortexletEmotional/emotionManager";
+import LongTermManager from "../cortexletMemoric/longTermManager";
 import MotoricManager from "../cortexletMotoric/motoricManager";
 import StatefulObject from "../cortexletState/statefulObject";
 
 class BlinkingEngine extends StatefulObject {
     private motoricManager: MotoricManager;
+    private longTermMemory: LongTermManager;
     public IDENTIFIER: string = "vb";
-    private emotionPipeline: EmotionPipeline;
+    private emotionPipeline: EmotionManager;
     private blinkingEnabled: Boolean = false;
     private blinks: { [index in EmotionalState]?: any } = {
         [EmotionalState.Angry]: [
@@ -102,12 +104,24 @@ class BlinkingEngine extends StatefulObject {
                 closedState: 169
             }
         ],
+        [EmotionalState.Sleepy]: [
+            {
+                openState: 156,
+                closedState: 156
+            },
+            {
+                openState: 60,
+                closedState: 169
+            }
+        ],
     }
 
-    constructor(motoricManager: MotoricManager, emotionPipeline: EmotionPipeline) {
+    constructor(motoricManager: MotoricManager, emotionPipeline: EmotionManager, longTermMemory: LongTermManager) {
         super();
         this.motoricManager = motoricManager;
+        this.longTermMemory = longTermMemory;
         this.emotionPipeline = emotionPipeline;
+        this.blinkingEnabled = this.longTermMemory.get_from_memory("biomimeticSettings").blinking;
         var self = this;
         let min: any = 2000;
         let max: any = 5000;
@@ -133,6 +147,10 @@ class BlinkingEngine extends StatefulObject {
     set_blinking(state: Boolean) : void
     {
         this.blinkingEnabled = state;
+        this.longTermMemory.set_value((memoryObject) => {
+            memoryObject["biomimeticSettings"].blinking = state
+        });
+        this.emit_state("change")
     }
 
     close() : void {
